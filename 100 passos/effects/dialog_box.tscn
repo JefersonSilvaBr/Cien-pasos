@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/Retro Gaming.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://effects/dialog_box.gd" type="Script" id=2]
+[ext_resource path="res://effects/manager.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="DialogBox" type="Label"]
+margin_top = 1.0
+margin_right = 319.0
+margin_bottom = 147.0
+rect_scale = Vector2( 1.00286, 1.22127 )
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 2 )
+
+[node name="Manager" type="Node2D" parent="."]
+scale = Vector2( 1, 1 )
+script = ExtResource( 3 )
