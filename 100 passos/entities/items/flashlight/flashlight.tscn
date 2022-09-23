@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/items/item_template/item_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/items/flashlight/flashlight.gd" type="Script" id=2]
+
+[node name="Flashlight" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Flashlight_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Flashlight_body_exited"]
