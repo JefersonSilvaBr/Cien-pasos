@@ -38,6 +38,9 @@ animations = [ {
 
 [node name="Child" instance=ExtResource( 1 )]
 
+[node name="Collider" parent="." index="0"]
+scale = Vector2( 0.759997, 1 )
+
 [node name="BaseTexture" parent="." index="1"]
 visible = false
 
@@ -45,8 +48,11 @@ visible = false
 position = Vector2( 6, 0 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
+
+[node name="CheckInteraction" parent="." index="3"]
+scale = Vector2( 1.72, 1 )
 
 [node name="TextController" parent="." index="4"]
 dialog_limit = [ 1, 3, 5 ]

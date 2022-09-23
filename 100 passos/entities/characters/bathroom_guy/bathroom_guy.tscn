@@ -18,6 +18,9 @@ animations = [ {
 
 [node name="BathroomGuy" instance=ExtResource( 2 )]
 
+[node name="Collider" parent="." index="0"]
+position = Vector2( 3, 3.5 )
+
 [node name="BaseTexture" parent="." index="1"]
 visible = false
 
@@ -26,12 +29,19 @@ position = Vector2( 4, 0 )
 frames = SubResource( 2 )
 animation = "idle"
 
+[node name="CheckInteraction" parent="." index="3"]
+scale = Vector2( 1.68, 1 )
+
 [node name="TextController" parent="." index="4"]
+position = Vector2( 2, -38 )
 dialog_limit = [ 1, 3, 5 ]
-text_list = [ "FIRST_VIEW", "", "CONCLUDING", "", "AFTER_CONCLUDING", "" ]
+text_list = [ "Oye,  ¿cómo estás, amigo, podrías por favor, traerme un cigarro?", "", "Ups, que bueno que tienes las cosas, muchas gracias.", "", "AFTER_CONCLUDING", "" ]
 
 [node name="additional" parent="TextController" index="0"]
 script = ExtResource( 1 )
 
 [node name="Text" parent="TextController" index="1"]
+margin_left = 10.0
+margin_right = 343.0
 text = "Bathroom guy"
+align = 0

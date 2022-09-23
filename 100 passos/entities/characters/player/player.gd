@@ -61,6 +61,8 @@ func _idle_check():
 func _walk_check():
 	if limit_steps <= 0:
 		current_state = LOOP
+	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
+	 return WALK
 	current_state = IDLE
 
 func _interaction_check():

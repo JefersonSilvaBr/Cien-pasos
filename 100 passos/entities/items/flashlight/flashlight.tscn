@@ -6,5 +6,8 @@
 [node name="Flashlight" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Animated" parent="." index="1"]
+flip_h = true
+
 [connection signal="body_entered" from="." to="." method="_on_Flashlight_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Flashlight_body_exited"]

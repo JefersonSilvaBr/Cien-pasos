@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/resources/base_tile_small.tres" type="TileSet" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://entities/characters/smoker/smoker.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/characters/bathroom_guy/bathroom_guy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/background.png" type="Texture" id=10]
+[ext_resource path="res://entities/effects/light.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/effects/flashlight.png" type="Texture" id=12]
+[ext_resource path="res://assets/effects/light.png" type="Texture" id=13]
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -50,28 +53,20 @@ z_as_relative = false
 disabled = true
 
 [node name="Animated" parent="Characters/Child" index="2"]
-frame = 4
+frame = 2
 
 [node name="Mother" parent="Characters" instance=ExtResource( 3 )]
-position = Vector2( 501, -16 )
+position = Vector2( 514, -16 )
 z_index = 7
 z_as_relative = false
 
-[node name="Collider" parent="Characters/Mother" index="0"]
-position = Vector2( 4, 4 )
-disabled = true
-
 [node name="Guard" parent="Characters" instance=ExtResource( 7 )]
-position = Vector2( 564, -16 )
-
-[node name="Collider" parent="Characters/Guard" index="0"]
-disabled = true
+position = Vector2( 599, -16 )
 
 [node name="Smoker" parent="Characters" instance=ExtResource( 8 )]
 position = Vector2( 399, -16 )
 
 [node name="Collider" parent="Characters/Smoker" index="0"]
-position = Vector2( 4, 3 )
 disabled = true
 
 [node name="BathroomGuy" parent="Characters" instance=ExtResource( 9 )]
@@ -91,6 +86,9 @@ position = Vector2( 317, -32 )
 z_index = 6
 z_as_relative = false
 
+[node name="Camera" parent="Player" index="2"]
+limit_top = 0
+
 [node name="Hub" parent="Player" instance=ExtResource( 5 )]
 margin_left = -75.0
 margin_top = 23.0
@@ -101,12 +99,45 @@ margin_bottom = 23.0
 position = Vector2( -5, -16 )
 
 [node name="Mask" type="CanvasModulate" parent="Effects"]
-color = Color( 0.341176, 0.341176, 0.341176, 1 )
+scale = Vector2( 3.3367, -11.2893 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="Environment" type="WorldEnvironment" parent="Effects"]
 environment = SubResource( 4 )
 
+[node name="station_1" parent="Effects" instance=ExtResource( 11 )]
+visible = true
+position = Vector2( 307, -50 )
+
+[node name="bathtoom" parent="Effects" instance=ExtResource( 11 )]
+visible = true
+position = Vector2( 149, -51 )
+texture_scale = 0.5
+script = null
+
+[node name="eletric" parent="Effects" instance=ExtResource( 11 )]
+position = Vector2( 4, -34 )
+texture = ExtResource( 13 )
+texture_scale = 0.5
+color = Color( 0, 0.505882, 1, 1 )
+energy = 1.2
+
+[node name="station_2" parent="Effects" instance=ExtResource( 11 )]
+visible = true
+position = Vector2( 492, -50 )
+
+[node name="emergemcy" parent="Effects" instance=ExtResource( 11 )]
+visible = true
+position = Vector2( 36, -56 )
+texture_scale = 0.2
+color = Color( 1, 0.403922, 0.403922, 1 )
+energy = 0.91
+script = null
+
+[node name="flashlight" parent="Effects" instance=ExtResource( 11 )]
+position = Vector2( 626, -13 )
+texture = ExtResource( 12 )
+
 [editable path="Characters/Child"]
-[editable path="Characters/Mother"]
-[editable path="Characters/Guard"]
 [editable path="Characters/Smoker"]
+[editable path="Player"]

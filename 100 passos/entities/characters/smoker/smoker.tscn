@@ -27,8 +27,8 @@ frames = SubResource( 2 )
 animation = "idle"
 
 [node name="TextController" parent="." index="4"]
-dialog_limit = [ 1, 3, 5 ]
-text_list = [ "FIRST_VIEW", "", "CONCLUDING", "", "AFTER_CONCLUDING", "" ]
+dialog_limit = [ 1, 4, 6 ]
+text_list = [ "Hola señor, ¿el querido sabe alguna forma de salir de este disgusto?", "", "Hou, hola, ¿quieres un poco de tabaco?", "Si, te puedo entregar algunas, un caballero siempre debe ser respetuoso.", "", "AFTER_CONCLUDING", "" ]
 
 [node name="additional" parent="TextController" index="0"]
 script = ExtResource( 3 )

@@ -13,5 +13,5 @@ var have_cigarette = false
 var interact_mother = false
 var interact_child = false
 var interact_guard = false
-var interact_bathroom_guy = true
+var interact_bathroom_guy = false
 var interact_smoker = false

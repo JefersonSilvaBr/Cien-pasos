@@ -35,4 +35,7 @@ text_list = [ "O señor, por favor, ayúdeme a encontrar a mi hijo, Necesito el 
 script = ExtResource( 1 )
 
 [node name="Text" parent="TextController" index="1"]
+margin_left = -110.0
+margin_right = 223.0
 text = "Mother"
+align = 2

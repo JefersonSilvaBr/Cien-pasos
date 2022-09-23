@@ -26,6 +26,10 @@ position = Vector2( 5, 0 )
 frames = SubResource( 2 )
 animation = "idle"
 
+[node name="CheckInteraction" parent="." index="3"]
+position = Vector2( -3, 0 )
+scale = Vector2( 2, 1 )
+
 [node name="TextController" parent="." index="4"]
 dialog_limit = [ 1, 3, 5 ]
 text_list = [ "FIRST_VIEW", "", "CONCLUDING", "", "AFTER_CONCLUDING", "" ]

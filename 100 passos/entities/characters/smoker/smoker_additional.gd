@@ -14,7 +14,7 @@ func _global_manage_item():
 func _controler():
 	if char_ref.concluding == true:
 		char_ref.current_dialog = char_ref.AFTER_CONCLUDING
-		char_ref.current_list = 4
+		char_ref.current_list = 5
 	elif Global.interact_bathroom_guy == true:
 		char_ref.current_dialog = char_ref.CONCLUDING
 		char_ref.current_list = 2
