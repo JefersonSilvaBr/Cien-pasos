@@ -1,25 +1,58 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://entities/characters/bathroom_guy/bathroom_guy_additional.gd" type="Script" id=1]
 [ext_resource path="res://entities/characters/char_template/char_template.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/entities/characters/Char_base.png" type="Texture" id=3]
+[ext_resource path="res://assets/entities/characters/Char_base-Sheet.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 3 )
-region = Rect2( 128, 0, 32, 32 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 160, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
+"speed": 1.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "smoke",
+"speed": 3.0
 } ]
 
 [node name="BathroomGuy" instance=ExtResource( 2 )]
 
 [node name="Collider" parent="." index="0"]
-position = Vector2( 3, 3.5 )
+position = Vector2( 2.5, 3.5 )
 
 [node name="BaseTexture" parent="." index="1"]
 visible = false
@@ -28,6 +61,8 @@ visible = false
 position = Vector2( 4, 0 )
 frames = SubResource( 2 )
 animation = "idle"
+playing = true
+flip_h = true
 
 [node name="CheckInteraction" parent="." index="3"]
 scale = Vector2( 1.68, 1 )

@@ -2,10 +2,12 @@ extends KinematicBody2D
 class_name Player
 
 signal interaction
+export(bool) var reflex 
 
 var velocity = Vector2.ZERO
 var limit_steps = 100
 
+var current_walk = 0
 var current_state = 0
 enum {IDLE, WALK, INTERACTION, LOOP}
 
@@ -32,9 +34,15 @@ func _idle():
 	current_state = _idle_check()
 
 func _walk():
-	$Animated.play("walk")
+	if current_walk == 0:
+		$Animated.play("walk")
+	else:
+		$Animated.play("walk_2")
 	_moves()
 	_move_slide()
+	if Input.is_action_just_pressed("ui_accept") and $RayCast.is_colliding():
+		current_state = INTERACTION
+		return
 
 func _interaction():
 	$Animated.play("idle")
@@ -45,8 +53,7 @@ func _loop():
 	if $Mask.modulate.a < 255:
 		$Mask.modulate.a += 1
 	else: 
-		Global.loop_counter += 1
-		get_tree().change_scene("res://world/scenes/level.tscn")
+		Global.current_state = LOOP
 
 
 func _idle_check():
@@ -59,10 +66,13 @@ func _idle_check():
 	return current_state
 
 func _walk_check():
+	_verify_current_walk()
 	if limit_steps <= 0:
 		current_state = LOOP
+		return
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
-	 return WALK
+		current_state = WALK
+		return
 	current_state = IDLE
 
 func _interaction_check():
@@ -85,17 +95,25 @@ func _moves():
 	if current_state != WALK:
 		velocity.x = 0
 	elif $Animated.flip_h == true:
-		velocity.x = -20
+		velocity.x = -20.5
 	elif $Animated.flip_h == false:
-		velocity.x = 20
+		velocity.x = 20.5
 
 func _move_slide():
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if reflex == false:
+		velocity = move_and_slide(velocity, Vector2.UP)
+
+func _verify_current_walk():
+	if current_walk == 0:
+		current_walk = 1
+	else:
+		current_walk = 0
 
 
 func _on_Animated_animation_finished():
-	if $Animated.animation == "walk":
-		limit_steps -= 1
+	if $Animated.animation == "walk" or $Animated.animation == "walk_2":
+		if not reflex:
+			limit_steps -= 1
 		print(limit_steps)
 		_walk_check()
 

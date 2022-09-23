@@ -9,6 +9,7 @@ func _global_manage_interaction():
 func _global_manage_item():
 	char_ref.concluding = true
 	child.get_child(0).disabled = true
+	child.get_child(2).play("idle")
 	Global.have_asthma_inhaler = false
 
 func _controler():

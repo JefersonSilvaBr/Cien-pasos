@@ -35,19 +35,15 @@ func _controller():
 		items_list.append(RADIO)
 	if Global.have_battery:
 		items_list.append(BATTERY)
+		
 	if items_list.empty():
 		$ItemsSelect.visible = false
-	else:
-		$ItemsSelect.visible = true
-	
-	if Input.is_action_just_pressed("ui_select"):
+	elif Input.is_action_just_pressed("ui_select") or items_list.size() == 1:
 		for index in 6:
 			current_item += 1
 			if current_item == 6:
 				current_item = 0
-			print(current_item, " list ", items_list.size())
 			for i in items_list.size():
 				if current_item == items_list[i]:
-					print(current_item, " select ", items_list[i])
 					$ItemsSelect.visible = true
 					return

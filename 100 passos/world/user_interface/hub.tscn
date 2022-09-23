@@ -66,8 +66,8 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="ItemsSelect" type="AnimatedSprite" parent="."]
-visible = false
-position = Vector2( 19, 17 )
+position = Vector2( 28, 152 )
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 7 )
 animation = "asthma_inhaler"
 playing = true

@@ -8,6 +8,7 @@ func _global_manage_interaction():
 
 func _global_manage_item():
 	char_ref.concluding = true
+	child.get_child(2).play("flashlight")
 	Global.have_flashlight = false
 
 func _controler():

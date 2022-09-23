@@ -10,6 +10,7 @@ func _global_manage_item():
 	char_ref.concluding = true
 	Global.have_cigarette = false
 	child.get_child(0).disabled = true
+	child.get_child(2).play("smoke")
 
 func _controler():
 	if char_ref.concluding == true:
