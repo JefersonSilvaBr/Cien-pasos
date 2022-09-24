@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://entities/characters/mother/mother_additional.gd" type="Script" id=1]
 [ext_resource path="res://entities/characters/char_template/char_template.tscn" type="PackedScene" id=2]
@@ -45,6 +45,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 14, 13 )
+
 [node name="Mother" instance=ExtResource( 2 )]
 
 [node name="BaseTexture" parent="." index="1"]
@@ -54,9 +57,12 @@ visible = false
 position = Vector2( 2, 0 )
 frames = SubResource( 1 )
 animation = "asthma"
-frame = 2
 playing = true
 flip_h = true
+
+[node name="Collider" parent="CheckInteraction" index="0"]
+position = Vector2( -4, 3 )
+shape = SubResource( 9 )
 
 [node name="TextController" parent="." index="4"]
 dialog_limit = [ 1, 3, 5 ]

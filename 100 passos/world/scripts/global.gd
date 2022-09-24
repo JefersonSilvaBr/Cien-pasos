@@ -10,10 +10,10 @@ var have_radio = false
 var have_battery = false
 var have_cigarette = false
 
-var interact_mother = true
+var interact_mother = false
 var interact_child = false
 var interact_guard = false
-var interact_bathroom_guy = true
+var interact_bathroom_guy = false
 var interact_smoker = false
 
 var current_state = 0
@@ -36,8 +36,9 @@ func _process(delta):
 func _loop():
 		loop_counter += 1
 		_items_reset()
-		get_tree().change_scene("res://world/scenes/level.tscn")
+		TransitionLevel._fade_in("res://world/scenes/level.tscn")
 		current_state = PLAYING
+		print(loop_counter)
 
 
 func _items_reset():

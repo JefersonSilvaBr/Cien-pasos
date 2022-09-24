@@ -7,6 +7,7 @@ export(bool) var reflex
 var velocity = Vector2.ZERO
 var limit_steps = 100
 
+var current_loop = 1
 var current_walk = 0
 var current_state = 0
 enum {IDLE, WALK, INTERACTION, LOOP}
@@ -50,10 +51,9 @@ func _interaction():
 
 func _loop():
 	$Animated.play("loop")
-	if $Mask.modulate.a < 255:
-		$Mask.modulate.a += 1
-	else: 
+	if current_loop == 1:
 		Global.current_state = LOOP
+		current_loop -= 1
 
 
 func _idle_check():
@@ -95,9 +95,9 @@ func _moves():
 	if current_state != WALK:
 		velocity.x = 0
 	elif $Animated.flip_h == true:
-		velocity.x = -20.5
+		velocity.x = -22
 	elif $Animated.flip_h == false:
-		velocity.x = 20.5
+		velocity.x = 22
 
 func _move_slide():
 	if reflex == false:

@@ -1,7 +1,7 @@
 extends Area2D
 
 func _process(delta):
-	if $Animated.frame == 0 or $Animated.frame == 3:
+	if $Animated.frame == 0 or $Animated.frame == 1 or $Animated.frame == 6 or $Animated.frame == 7:
 		$Collision.disabled = false
 		$Light.visible = true
 	else:

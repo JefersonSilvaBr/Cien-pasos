@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ItemTemplate",
+"class": "Cabinet",
+"language": "GDScript",
+"path": "res://entities/items/cabinet/cabinet.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "CharTemplate",
 "language": "GDScript",
@@ -29,10 +34,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/items/item_template/item_template.gd"
 }, {
+"base": "ItemTemplate",
+"class": "Key",
+"language": "GDScript",
+"path": "res://entities/items/key/key.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://world/scenes/level.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://entities/characters/player/player.gd"
+}, {
+"base": "ItemTemplate",
+"class": "Radio",
+"language": "GDScript",
+"path": "res://entities/items/radio/radio.gd"
 }, {
 "base": "Node2D",
 "class": "TextController",
@@ -40,11 +60,15 @@ _global_script_classes=[ {
 "path": "res://entities/characters/char_template/text_controller.gd"
 } ]
 _global_script_class_icons={
+"Cabinet": "",
 "CharTemplate": "",
 "Flashlight": "",
 "HubController": "",
 "ItemTemplate": "",
+"Key": "",
+"Level": "",
 "Player": "",
+"Radio": "",
 "TextController": ""
 }
 
@@ -58,6 +82,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://world/scripts/global.gd"
+TransitionLevel="*res://world/resources/transition_level.tscn"
 
 [display]
 

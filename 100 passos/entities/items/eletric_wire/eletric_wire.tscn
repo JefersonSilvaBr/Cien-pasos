@@ -8,6 +8,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.5, 4.5 )
 
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 32, 32 )
@@ -16,20 +20,16 @@ region = Rect2( 96, 0, 32, 32 )
 atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
-
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 3 ), SubResource( 6 ), SubResource( 4 ), SubResource( 4 ) ],
+"frames": [ SubResource( 6 ), SubResource( 2 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 2 ), SubResource( 6 ), SubResource( 4 ), SubResource( 4 ), SubResource( 4 ), SubResource( 4 ) ],
 "loop": true,
 "name": "normal",
-"speed": 1.5
+"speed": 3.0
 } ]
 
 [node name="ElectricWire" type="Area2D"]
@@ -42,7 +42,7 @@ shape = SubResource( 1 )
 [node name="Animated" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "normal"
-frame = 1
+frame = 10
 playing = true
 
 [node name="Light" parent="." instance=ExtResource( 1 )]

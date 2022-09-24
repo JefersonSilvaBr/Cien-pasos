@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://entities/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/resources/base_tile_small.tres" type="TileSet" id=2]
@@ -11,9 +11,17 @@
 [ext_resource path="res://entities/characters/bathroom_guy/bathroom_guy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/background.png" type="Texture" id=10]
 [ext_resource path="res://entities/effects/light.tscn" type="PackedScene" id=11]
-[ext_resource path="res://world/scenes/level.gd" type="Script" id=12]
+[ext_resource path="res://entities/items/radio/radio.tscn" type="PackedScene" id=12]
+[ext_resource path="res://entities/items/door/door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/items/mirror.png" type="Texture" id=14]
 [ext_resource path="res://entities/items/eletric_wire/eletric_wire.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/effects/transition.png" type="Texture" id=16]
+[ext_resource path="res://entities/items/key/key.tscn" type="PackedScene" id=17]
+[ext_resource path="res://entities/items/battery/battery.tscn" type="PackedScene" id=18]
+[ext_resource path="res://entities/items/cabinet/cabinet.tscn" type="PackedScene" id=19]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 12.5 )
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -22,19 +30,30 @@ glow_high_quality = true
 
 [node name="Level" type="Node2D"]
 position = Vector2( 32, 80 )
-script = ExtResource( 12 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="BackgroundElements" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mirror" type="Sprite" parent="BackgroundElements"]
 modulate = Color( 1, 1, 1, 0.584314 )
 position = Vector2( 179, -41 )
 texture = ExtResource( 14 )
 
+[node name="Background_0" type="Sprite" parent="BackgroundElements"]
+modulate = Color( 0.184314, 0.172549, 0.152941, 1 )
+self_modulate = Color( 0.184314, 0.172549, 0.152941, 1 )
+position = Vector2( 357, -35 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 16 )
+
+[node name="Background_1" type="Sprite" parent="BackgroundElements"]
+position = Vector2( 368, -26 )
+texture = ExtResource( 10 )
+
 [node name="LevelDesing" type="Node2D" parent="."]
 position = Vector2( 0, 96 )
-
-[node name="background" type="Sprite" parent="LevelDesing"]
-position = Vector2( 368, -128 )
-texture = ExtResource( 10 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -50,6 +69,9 @@ tile_data = PoolIntArray( -655362, 0, 0, -655361, 0, 131072, -720896, 0, 131072,
 
 [node name="Characters" type="Node2D" parent="."]
 position = Vector2( -5, -16 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Child" parent="Characters" instance=ExtResource( 4 )]
 position = Vector2( 273, -16 )
@@ -60,12 +82,38 @@ z_as_relative = false
 disabled = true
 
 [node name="Animated" parent="Characters/Child" index="2"]
-frame = 4
+frame = 2
+
+[node name="Collider" parent="Characters/Child/CheckInteraction" index="0"]
+shape = SubResource( 8 )
+
+[node name="TextController" parent="Characters/Child" index="4"]
+light_mask = 1
+z_index = 0
+z_as_relative = true
+
+[node name="Text" parent="Characters/Child/TextController" index="1"]
+light_mask = 1
 
 [node name="Mother" parent="Characters" instance=ExtResource( 3 )]
 position = Vector2( 514, -16 )
-z_index = 7
+z_index = 1
 z_as_relative = false
+
+[node name="Animated" parent="Characters/Mother" index="2"]
+frame = 1
+
+[node name="Collider" parent="Characters/Mother/CheckInteraction" index="0"]
+position = Vector2( 3, 3.5 )
+shape = SubResource( 8 )
+
+[node name="TextController" parent="Characters/Mother" index="4"]
+light_mask = 1
+z_index = 0
+z_as_relative = true
+
+[node name="Text" parent="Characters/Mother/TextController" index="1"]
+light_mask = 1
 
 [node name="Guard" parent="Characters" instance=ExtResource( 7 )]
 position = Vector2( 599, -16 )
@@ -77,27 +125,110 @@ position = Vector2( 405, -16 )
 disabled = true
 
 [node name="Animated" parent="Characters/Smoker" index="2"]
-frame = 2
+frame = 1
+
+[node name="Collider" parent="Characters/Smoker/CheckInteraction" index="0"]
+shape = SubResource( 8 )
+
+[node name="TextController" parent="Characters/Smoker" index="4"]
+light_mask = 1
+z_index = 0
+z_as_relative = true
+
+[node name="Text" parent="Characters/Smoker/TextController" index="1"]
+light_mask = 1
 
 [node name="BathroomGuy" parent="Characters" instance=ExtResource( 9 )]
 position = Vector2( 101, -16 )
 
+[node name="Collider" parent="Characters/BathroomGuy" index="0"]
+position = Vector2( 1.25, 3.5 )
+
+[node name="Animated" parent="Characters/BathroomGuy" index="2"]
+frame = 0
+
+[node name="Collider" parent="Characters/BathroomGuy/CheckInteraction" index="0"]
+shape = SubResource( 8 )
+
+[node name="TextController" parent="Characters/BathroomGuy" index="4"]
+light_mask = 1
+z_index = 0
+z_as_relative = true
+
+[node name="Text" parent="Characters/BathroomGuy/TextController" index="1"]
+light_mask = 1
+
 [node name="Items" type="Node2D" parent="."]
-position = Vector2( -5, -16 )
+position = Vector2( -7, -16 )
 
 [node name="Flashlight" parent="Items" instance=ExtResource( 6 )]
 position = Vector2( 175, -17 )
 
 [node name="ElectricWire" parent="Items" instance=ExtResource( 15 )]
-position = Vector2( 8, -29 )
+position = Vector2( 14, -29 )
+
+[node name="DoorGuard" parent="Items" instance=ExtResource( 13 )]
+position = Vector2( 526, -16 )
+
+[node name="DoorExit" parent="Items" instance=ExtResource( 13 )]
+position = Vector2( 638, -16 )
+
+[node name="Collider" parent="Items/DoorExit" index="0"]
+disabled = true
+
+[node name="Animated" parent="Items/DoorExit" index="1"]
+animation = "open"
+frame = 1
+
+[node name="Collider" parent="Items/DoorExit/Check_interaction" index="0"]
+disabled = true
+
+[node name="Door_inventory" parent="Items" instance=ExtResource( 13 )]
+position = Vector2( 93, -16 )
+closed = true
+
+[node name="Animated" parent="Items/Door_inventory" index="1"]
+flip_h = true
+
+[node name="Collider" parent="Items/Door_inventory/Check_interaction" index="0"]
+position = Vector2( 0, 0 )
+
+[node name="Key" parent="Items" instance=ExtResource( 17 )]
+position = Vector2( 734, -3.00003 )
+rotation = 2.27783
+
+[node name="Animated" parent="Items/Key" index="1"]
+animation = "select"
+
+[node name="Battery" parent="Items" instance=ExtResource( 18 )]
+position = Vector2( 43, -20 )
+rotation = -0.00116086
+
+[node name="Cabinet" parent="Items" instance=ExtResource( 19 )]
+position = Vector2( -11, -16 )
+have_item = true
+
+[node name="Radio" parent="Items" instance=ExtResource( 12 )]
+position = Vector2( -13, -25 )
+rotation = -0.488547
+
+[node name="Animated" parent="Items/Radio" index="1"]
+visible = false
+
+[node name="Cabinet2" parent="Items" instance=ExtResource( 19 )]
+position = Vector2( 559, -16 )
+
+[node name="Cabinet3" parent="Items" instance=ExtResource( 19 )]
+position = Vector2( 571, -16 )
 
 [node name="PC" type="Node2D" parent="."]
 position = Vector2( -4, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Player" parent="PC" instance=ExtResource( 1 )]
 position = Vector2( 317, -32 )
-z_index = 6
-z_as_relative = false
 
 [node name="Camera" parent="PC/Player" index="2"]
 limit_top = 0
@@ -121,8 +252,15 @@ limit_top = 0
 [node name="RayCast" parent="PC/Player/Reflex" index="3"]
 enabled = false
 
+[node name="Mask" parent="PC/Player/Reflex" index="4"]
+margin_left = -170.0
+margin_right = 170.0
+
 [node name="Effects" type="Node2D" parent="."]
 position = Vector2( -5, -16 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Mask" type="CanvasModulate" parent="Effects"]
 scale = Vector2( 3.3367, -11.2893 )
@@ -150,15 +288,24 @@ color = Color( 1, 0.403922, 0.403922, 1 )
 energy = 0.91
 script = null
 
-[node name="Environment" type="WorldEnvironment" parent="."]
+[node name="Environment" type="WorldEnvironment" parent="Effects"]
 environment = SubResource( 4 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Hub" parent="UI" instance=ExtResource( 5 )]
 light_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [editable path="Characters/Child"]
+[editable path="Characters/Mother"]
 [editable path="Characters/Smoker"]
+[editable path="Characters/BathroomGuy"]
+[editable path="Items/DoorExit"]
+[editable path="Items/Door_inventory"]
+[editable path="Items/Key"]
+[editable path="Items/Radio"]
 [editable path="PC/Player"]
 [editable path="PC/Player/Reflex"]
