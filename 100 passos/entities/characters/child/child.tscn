@@ -48,7 +48,7 @@ visible = false
 position = Vector2( 6, 0 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CheckInteraction" parent="." index="3"]
@@ -56,7 +56,7 @@ scale = Vector2( 1.17663, 1.03941 )
 
 [node name="TextController" parent="." index="4"]
 dialog_limit = [ 1, 3, 5 ]
-text_list = [ "hola chico, cuidado con mi carrito que esta pasando.", "", "¿Qué necesita mamá de la bomba de aire? O por supuesto, tómalo cuanto antes chico.", "", "4", "" ]
+text_list = [ "hola chico, cuidado con mi carrito que esta pasando.", "", "¿Qué necesita mamá de la bomba de aire? O por supuesto, tómalo cuanto antes chico.", "", "¿Mi madre está bien?", "" ]
 
 [node name="additional" parent="TextController" index="0"]
 script = ExtResource( 2 )

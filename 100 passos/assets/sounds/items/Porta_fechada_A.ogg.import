@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Porta_fechada_A.ogg-fdaa1978c949efe103fb2f97219e361a.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/items/Porta_fechada_A.ogg"
+dest_files=[ "res://.import/Porta_fechada_A.ogg-fdaa1978c949efe103fb2f97219e361a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Som_da_borboleta_aparecendo.ogg-b1027713b4c726d401e1209196631667.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/environment/Som_da_borboleta_aparecendo.ogg"
+dest_files=[ "res://.import/Som_da_borboleta_aparecendo.ogg-b1027713b4c726d401e1209196631667.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

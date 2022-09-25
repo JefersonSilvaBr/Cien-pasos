@@ -12,6 +12,7 @@ flip_h = true
 
 [node name="ColletedFX" type="AudioStreamPlayer2D" parent="." index="2"]
 stream = ExtResource( 3 )
+volume_db = 24.0
 
 [connection signal="body_entered" from="." to="." method="_on_Flashlight_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Flashlight_body_exited"]

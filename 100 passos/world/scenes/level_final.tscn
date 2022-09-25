@@ -1,16 +1,91 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://world/scenes/level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/background_final.png" type="Texture" id=2]
 [ext_resource path="res://entities/effects/light.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/characters/player/reflex/player_reflex.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/entities/characters/butterfly.png" type="Texture" id=5]
+[ext_resource path="res://assets/effects/light.png" type="Texture" id=6]
+[ext_resource path="res://world/scenes/soundfx_final_level.gd" type="Script" id=7]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Butterfly:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 43.7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Butterfly:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -32, -56 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "butterfly"
+length = 95.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Butterfly:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 84, 84.1, 95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 43.7, 43.7, 131.0, 131.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Butterfly:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 84, 84.1, 95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -96, -48 ), Vector2( 1344, -64 ), Vector2( 1344, -64 ), Vector2( 1344, 144 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+} ]
 
 [node name="Level" instance=ExtResource( 1 )]
 
-[node name="Backgorund_final" type="Sprite" parent="BackgroundElements" index="2"]
+[node name="Backgorund_final" type="Sprite" parent="BackgroundElements" index="3"]
 position = Vector2( 768, -26 )
 texture = ExtResource( 2 )
 
-[node name="Background_1" parent="BackgroundElements" index="3"]
+[node name="Background_1" parent="BackgroundElements" index="4"]
 visible = false
 
 [node name="Characters" parent="." index="2"]
@@ -19,14 +94,23 @@ visible = false
 [node name="Animated" parent="Characters/Child" index="2"]
 frame = 1
 
-[node name="Animated" parent="Characters/Smoker" index="2"]
+[node name="Animated" parent="Characters/Mother" index="2"]
 frame = 1
+
+[node name="Animated" parent="Characters/Smoker" index="2"]
+frame = 2
 
 [node name="Animated" parent="Characters/BathroomGuy" index="2"]
 frame = 0
 
+[node name="Flashlight" parent="Items" index="0"]
+visible = false
+
+[node name="ElectricWire" parent="Items" index="1"]
+visible = false
+
 [node name="Animated" parent="Items/ElectricWire" index="1"]
-frame = 4
+frame = 0
 
 [node name="Animated" parent="Items/DoorGuard" index="1"]
 animation = "open"
@@ -42,19 +126,19 @@ visible = false
 [node name="Battery" parent="Items" index="7"]
 visible = false
 
+[node name="Player" parent="PC" index="0"]
+position = Vector2( -12, -32 )
+
 [node name="Collider" parent="PC/Player" index="0"]
 disabled = true
 
 [node name="RayCast" parent="PC/Player" index="3"]
 enabled = false
 
-[node name="Light" parent="PC/Player" index="6" instance=ExtResource( 3 )]
-visible = true
-position = Vector2( -1, -37 )
-texture_scale = 0.4
-
-[node name="Effects" parent="." index="5"]
-visible = true
+[node name="PlayerReflex" parent="PC" index="1" instance=ExtResource( 4 )]
+position = Vector2( 3116, -32 )
+start = true
+reverse = true
 
 [node name="station_1" parent="Effects" index="1"]
 visible = false
@@ -71,10 +155,38 @@ visible = false
 [node name="UI" parent="." index="6"]
 visible = false
 
+[node name="Cutsene" type="AnimationPlayer" parent="." index="7"]
+autoplay = "butterfly"
+anims/RESET = SubResource( 5 )
+anims/butterfly = SubResource( 1 )
+
+[node name="Butterfly" type="Node2D" parent="." index="8"]
+position = Vector2( -32, -56 )
+rotation = 0.762709
+
+[node name="Animated" type="AnimatedSprite" parent="Butterfly" index="0"]
+frames = SubResource( 4 )
+animation = "fly"
+playing = true
+
+[node name="Light" parent="Butterfly" index="1" instance=ExtResource( 3 )]
+visible = true
+position = Vector2( -0.000183105, 0.000244141 )
+texture = ExtResource( 6 )
+texture_scale = 0.4
+energy = 0.7
+script = null
+
+[node name="SoundFX" type="Node2D" parent="." index="9"]
+script = ExtResource( 7 )
+
 [editable path="Characters/Child"]
 [editable path="Characters/Mother"]
 [editable path="Characters/Smoker"]
 [editable path="Characters/BathroomGuy"]
+[editable path="Characters/Journalist"]
+[editable path="Characters/Skateboarder"]
+[editable path="Characters/Seller"]
 [editable path="Items/ElectricWire"]
 [editable path="Items/DoorGuard"]
 [editable path="Items/DoorExit"]
@@ -83,4 +195,3 @@ visible = false
 [editable path="Items/Key"]
 [editable path="Items/Radio"]
 [editable path="PC/Player"]
-[editable path="PC/Player/Reflex"]

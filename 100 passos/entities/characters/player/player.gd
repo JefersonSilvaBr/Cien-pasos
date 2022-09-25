@@ -1,19 +1,15 @@
 extends KinematicBody2D
 class_name Player
 
-signal interaction
-export(bool) var reflex 
-
 var velocity = Vector2.ZERO
 var limit_steps = 100
 
 var current_loop = 1
 var current_walk = 0
 var current_state = 0
-enum {IDLE, WALK, INTERACTION, LOOP}
+enum {IDLE, WALK, INTERACTION, LOOP, TRANSIT}
 
 func _ready():
-	connect("interaction",self,"on_Player_interaction")
 	pass
 
 func _physics_process(delta):
@@ -26,6 +22,9 @@ func _physics_process(delta):
 			_interaction()
 		LOOP:
 			_loop()
+		TRANSIT:
+			_transit()
+	
 
 
 func _idle():
@@ -55,9 +54,17 @@ func _loop():
 		Global.current_state = LOOP
 		current_loop -= 1
 
+func _transit():
+	if current_loop == 1:
+		get_parent().get_parent().get_node("UI/Hub").visible = false
+		FinalFransit._final("res://world/scenes/level_final.tscn")
+		current_loop -= 1
+
 
 func _idle_check():
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.have_radio and Global.have_battery:
+		return TRANSIT
+	elif Input.is_action_just_pressed("ui_accept"):
 		return INTERACTION
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
 		return WALK
@@ -67,7 +74,9 @@ func _idle_check():
 
 func _walk_check():
 	_verify_current_walk()
-	if limit_steps < 0:
+	if Global.have_radio and Global.have_battery:
+		return TRANSIT
+	elif limit_steps < 0:
 		current_state = LOOP
 		return
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
@@ -100,8 +109,7 @@ func _moves():
 		velocity.x = 22
 
 func _move_slide():
-	if reflex == false:
-		velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2.UP)
 
 func _verify_current_walk():
 	if current_walk == 0:
@@ -112,20 +120,6 @@ func _verify_current_walk():
 
 func _on_Animated_animation_finished():
 	if $Animated.animation == "walk" or $Animated.animation == "walk_2":
-		if not reflex:
-			if limit_steps > 10:
-				if $SoundFX/StepsFX.pitch_scale == 0.8:
-					$SoundFX/StepsFX.pitch_scale = 1
-				else:
-					$SoundFX/StepsFX.pitch_scale = 0.8
-				$SoundFX/StepsFX.play()
-			elif limit_steps <= 10:
-				$SoundFX/DramaticStepFX.play()
-				$SoundFX/DramaticStepFX.volume_db += 2
-			limit_steps -= 1
+		limit_steps -= 1
 		print(limit_steps)
 		_walk_check()
-
-
-func _on_Player_interaction():
-	pass

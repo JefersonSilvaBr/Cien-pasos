@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/characters/journalist/journalist_additional.gd" type="Script" id=1]
+[ext_resource path="res://assets/entities/characters/Char_base-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://entities/characters/char_template/char_template.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 256, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="Journalist" instance=ExtResource( 3 )]
+
+[node name="BaseTexture" parent="." index="1"]
+visible = false
+
+[node name="Animated" type="AnimatedSprite" parent="." index="2"]
+position = Vector2( 4, 3.5 )
+frames = SubResource( 5 )
+animation = "idle"
+
+[node name="TextController" parent="." index="4"]
+light_mask = 1
+dialog_limit = [ 2 ]
+text_list = [ "Estuve investigando esto, esta explotando, espero que no sea otra vez el conejo amarillo, ese asesino en serie, ya me esta volviendo loco", "Estaba aquí para investigar más y mira lo que pasó, ¿a eso lo llamo suerte o mala suerte?", "" ]
+
+[node name="additional" parent="TextController" index="0"]
+light_mask = 1
+script = ExtResource( 1 )
+
+[node name="Text" parent="TextController" index="1"]
+light_mask = 1

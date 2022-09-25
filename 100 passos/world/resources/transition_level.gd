@@ -11,7 +11,7 @@ func _fade_in(level:String):
 
 func _on_Animation_animation_finished(anim_name):
 	if anim_name == "faid_in":
-		get_tree().change_scene(level_trans)
 		animation_ref.play("faid_out")
+		get_tree().change_scene(level_trans)
 	elif anim_name == "faid_out":
 		$SoundFX/SoundScapeFX.play()

@@ -16,7 +16,7 @@ var interact_guard = false
 var interact_bathroom_guy = false
 var interact_smoker = false
 
-var current_state = 0
+var current_state = 1
 enum {MENU, PLAYING, PAUSE, LOOP, TRANSIT}
 
 func _process(delta):
@@ -24,13 +24,13 @@ func _process(delta):
 		MENU:
 			pass
 		PLAYING:
-			pass
+			_playing()
 		PAUSE:
 			pass
 		LOOP:
 			_loop()
 		TRANSIT:
-			pass
+			_transit()
 
 
 func _loop():
@@ -39,6 +39,15 @@ func _loop():
 		TransitionLevel._fade_in("res://world/scenes/level.tscn")
 		current_state = PLAYING
 		print(loop_counter)
+
+func _playing():
+	pass
+
+func _transit():
+	_items_reset()
+	FinalFransit._final("res://world/scenes/level_final.tscn")
+	print("trasit")
+	current_state = PLAYING
 
 
 func _items_reset():

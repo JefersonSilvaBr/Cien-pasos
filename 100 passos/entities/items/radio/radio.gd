@@ -7,7 +7,7 @@ func _ready():
 func _process(delta):
 	if it_is and Input.is_action_just_pressed("ui_accept") and $Animated.visible:
 		Global.have_radio = true
-		$Coollider.disabled = true
+		$Collider.disabled = true
 		$Animated.visible = false
 		$ColletedFX.play()
 

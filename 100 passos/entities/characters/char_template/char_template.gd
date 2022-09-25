@@ -48,3 +48,5 @@ func _on_CheckInteraction_body_entered(body):
 func _on_CheckInteraction_body_exited(body):
 	if body.name == "Player":
 		is_true = false
+
+

@@ -27,6 +27,7 @@ func _process(delta):
 				_skip()
 		CONCLUDING:
 			if current_list == dialog_limit[1]:
+				get_parent().get_node("InteractionFX").play()
 				$additional._global_manage_item()
 				emit_signal("end_dialog")
 			else:

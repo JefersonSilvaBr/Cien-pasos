@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Radio_voices.ogg-425753623776146d7d1db023df6add86.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/items/Radio_voices.ogg"
+dest_files=[ "res://.import/Radio_voices.ogg-425753623776146d7d1db023df6add86.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

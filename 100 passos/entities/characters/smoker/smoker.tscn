@@ -45,12 +45,12 @@ visible = false
 position = Vector2( 4, 0 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 4
+frame = 2
 playing = true
 
 [node name="TextController" parent="." index="4"]
 dialog_limit = [ 1, 4, 6 ]
-text_list = [ "Hola señor, ¿el querido sabe alguna forma de salir de este disgusto?", "", "Hou, hola, ¿quieres un poco de tabaco?", "Si, te puedo entregar algunas, un caballero siempre debe ser respetuoso.", "", "AFTER_CONCLUDING", "" ]
+text_list = [ "Hola señor, ¿el querido sabe alguna forma de salir de este disgusto?", "", "Hou, hola, ¿quieres un poco de tabaco?", "Si, te puedo entregar algunas, un caballero siempre debe ser respetuoso.", "", "¿Quieres morir más rápido hoy, ya sabes, fumando? ¿No? Entonces está bien.", "" ]
 
 [node name="additional" parent="TextController" index="0"]
 script = ExtResource( 3 )

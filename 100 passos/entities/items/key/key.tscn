@@ -29,7 +29,7 @@ animation = "key"
 
 [node name="ColletedFX" type="AudioStreamPlayer2D" parent="." index="3"]
 stream = ExtResource( 4 )
-volume_db = 10.0
+volume_db = 24.0
 
 [connection signal="body_entered" from="." to="." method="_on_Key_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Key_body_exited"]
