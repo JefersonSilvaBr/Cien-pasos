@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/items/items_hub.png" type="Texture" id=1]
 [ext_resource path="res://entities/items/radio/radio.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/items/Pegando_o_item.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -30,5 +31,9 @@ shape = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "radio"
 
+[node name="ColletedFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_on_Radio_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Radio_body_exited"]
+[connection signal="finished" from="ColletedFX" to="." method="_on_ColletedFX_finished"]

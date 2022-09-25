@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Porta_do_escritorio.ogg-4187817494a384eab056c9c2a8a1049b.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/items/Porta_do_escritorio.ogg"
+dest_files=[ "res://.import/Porta_do_escritorio.ogg-4187817494a384eab056c9c2a8a1049b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

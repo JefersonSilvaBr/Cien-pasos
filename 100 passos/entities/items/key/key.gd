@@ -7,7 +7,9 @@ func _ready():
 func _process(delta):
 	if it_is and Input.is_action_just_pressed("ui_accept"):
 		Global.have_key = true
-		queue_free()
+		$Coollider.disabled = true
+		$Texture.visible = false
+		$ColletedFX.play()
 
 
 func _on_Key_body_entered(body):
@@ -15,3 +17,6 @@ func _on_Key_body_entered(body):
 
 func _on_Key_body_exited(body):
 	it_is = false
+
+func _on_ColletedFX_finished():
+	queue_free()

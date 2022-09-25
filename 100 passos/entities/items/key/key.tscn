@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/items/key/key.gd" type="Script" id=1]
 [ext_resource path="res://entities/items/item_template/item_template.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/items/items_hub.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/items/Pegando_o_item.ogg" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -21,11 +22,15 @@ script = ExtResource( 1 )
 
 [node name="Animated" parent="." index="1"]
 visible = false
-animation = "key"
 
 [node name="Texture" type="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 2 )
 animation = "key"
 
+[node name="ColletedFX" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource( 4 )
+volume_db = 10.0
+
 [connection signal="body_entered" from="." to="." method="_on_Key_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Key_body_exited"]
+[connection signal="finished" from="ColletedFX" to="." method="_on_ColletedFX_finished"]

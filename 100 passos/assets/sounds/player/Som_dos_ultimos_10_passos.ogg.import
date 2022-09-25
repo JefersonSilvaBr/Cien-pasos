@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Som_dos_ultimos_10_passos.ogg-4949dc4f3e05a1fa7c3989b7e6996fa4.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/player/Som_dos_ultimos_10_passos.ogg"
+dest_files=[ "res://.import/Som_dos_ultimos_10_passos.ogg-4949dc4f3e05a1fa7c3989b7e6996fa4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

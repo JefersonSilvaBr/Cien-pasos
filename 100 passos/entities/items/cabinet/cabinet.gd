@@ -5,8 +5,9 @@ export(bool) var have_item
 onready var radio_ref = get_parent().get_node("Radio/Animated")
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept") and it_is:
+	if Input.is_action_just_pressed("ui_accept") and it_is and $Animated.animation != "open":
 		$Animated.play("open")
+		$OpenFX.play()
 	else:
 		pass
 

@@ -27,6 +27,7 @@ func _interaction():
 func _base_check():
 	if is_true and Input.is_action_just_pressed("ui_accept"):
 		$TextController/additional._controler()
+		$InteractionFX.play()
 		return INTERACTION
 	return current_state
 

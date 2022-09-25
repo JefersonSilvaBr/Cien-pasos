@@ -8,6 +8,7 @@ func _global_manage_interaction():
 
 func _global_manage_item():
 	char_ref.concluding = true
+	child.get_node("ItemsInteractionFX").play()
 	Global.have_asthma_inhaler = true
 
 func _controler():

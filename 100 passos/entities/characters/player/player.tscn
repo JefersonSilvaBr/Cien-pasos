@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/entities/player/Player-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://entities/characters/player/player.gd" type="Script" id=2]
-[ext_resource path="res://assets/effects/transition.png" type="Texture" id=5]
+[ext_resource path="res://assets/sounds/player/Som_do_passo.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/player/Som_dos_ultimos_10_passos.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.5, 12 )
@@ -105,15 +106,14 @@ collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Mask" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -168.0
-margin_top = -88.0
-margin_right = 172.0
-margin_bottom = 92.0
-texture = ExtResource( 5 )
+[node name="SoundFX" type="Node2D" parent="."]
+
+[node name="DramaticStepFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+stream = ExtResource( 4 )
+
+[node name="StepsFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+stream = ExtResource( 3 )
+volume_db = -3.0
 
 [connection signal="interaction" from="." to="." method="_on_Player_interaction"]
 [connection signal="animation_finished" from="Animated" to="." method="_on_Animated_animation_finished"]

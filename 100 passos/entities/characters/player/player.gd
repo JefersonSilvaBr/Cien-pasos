@@ -67,7 +67,7 @@ func _idle_check():
 
 func _walk_check():
 	_verify_current_walk()
-	if limit_steps <= 0:
+	if limit_steps < 0:
 		current_state = LOOP
 		return
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
@@ -113,6 +113,15 @@ func _verify_current_walk():
 func _on_Animated_animation_finished():
 	if $Animated.animation == "walk" or $Animated.animation == "walk_2":
 		if not reflex:
+			if limit_steps > 10:
+				if $SoundFX/StepsFX.pitch_scale == 0.8:
+					$SoundFX/StepsFX.pitch_scale = 1
+				else:
+					$SoundFX/StepsFX.pitch_scale = 0.8
+				$SoundFX/StepsFX.play()
+			elif limit_steps <= 10:
+				$SoundFX/DramaticStepFX.play()
+				$SoundFX/DramaticStepFX.volume_db += 2
 			limit_steps -= 1
 		print(limit_steps)
 		_walk_check()

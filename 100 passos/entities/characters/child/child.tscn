@@ -48,7 +48,7 @@ visible = false
 position = Vector2( 6, 0 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 3
+frame = 5
 playing = true
 
 [node name="CheckInteraction" parent="." index="3"]

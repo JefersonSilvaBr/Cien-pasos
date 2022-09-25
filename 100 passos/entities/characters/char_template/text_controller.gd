@@ -39,6 +39,7 @@ func _process(delta):
 
 func _skip():
 	if Input.is_action_just_pressed("ui_accept"):
+		get_parent().get_node("InteractionFX").play()
 		current_list += 1
 
 func _text_update():

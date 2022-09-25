@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Som_do_passo.ogg-972e7e2b131a1519ba270b8876e479b5.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/player/Som_do_passo.ogg"
+dest_files=[ "res://.import/Som_do_passo.ogg-972e7e2b131a1519ba270b8876e479b5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

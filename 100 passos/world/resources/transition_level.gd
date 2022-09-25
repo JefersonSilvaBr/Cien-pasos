@@ -5,6 +5,8 @@ var level_trans : NodePath
 
 func _fade_in(level:String):
 	level_trans = level
+	$SoundFX/SoundScapeFX.pause_mode = true
+	$SoundFX/LoopFX.play()
 	animation_ref.play("faid_in")
 
 func _on_Animation_animation_finished(anim_name):
@@ -12,4 +14,4 @@ func _on_Animation_animation_finished(anim_name):
 		get_tree().change_scene(level_trans)
 		animation_ref.play("faid_out")
 	elif anim_name == "faid_out":
-		pass
+		$SoundFX/SoundScapeFX.play()
