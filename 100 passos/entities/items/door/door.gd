@@ -17,7 +17,7 @@ func _process(delta):
 		$Check_interaction/Collider.disabled = true
 		$Animated.play("open")
 	else:
-		pass
+		$SoundFX/LockedFX.play()
 
 func _on_Check_interaction_body_entered(body):
 	it_is = true

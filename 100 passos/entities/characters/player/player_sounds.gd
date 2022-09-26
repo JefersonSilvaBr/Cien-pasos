@@ -30,6 +30,8 @@ func _process(delta):
 		_play_steps(9)
 
 func _play_steps(index):
-	if animated.animation == "walk" or animated.animation == "walk_2":
+	if (animated.animation == "walk" or animated.animation == "walk_2") and not get_parent().final:
 		if animated.frame == 2:
+			randomize()
+			$StepsFX.pitch_scale = rand_range(0.8, 1.2)
 			get_child(index).play()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/items/door.png" type="Texture" id=1]
 [ext_resource path="res://entities/items/door/door.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/items/Porta_abrindo.ogg" type="AudioStream" id=3]
-[ext_resource path="res://assets/sounds/items/Porta_do_escritorio.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/items/Porta_fechada_A.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/items/Porta_do_escritorio.ogg" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 1.5, 15.5 )
@@ -60,13 +61,15 @@ shape = SubResource( 6 )
 
 [node name="SoundFX" type="Node2D" parent="."]
 
-[node name="OpenFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+[node name="OpenFX" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 3 )
 
-[node name="UnlockingFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+[node name="UnlockingFX" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 5 )
 
-[node name="LockedFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+[node name="LockedFX" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 4 )
+volume_db = 2.0
 
 [connection signal="body_entered" from="Check_interaction" to="." method="_on_Check_interaction_body_entered"]
 [connection signal="body_exited" from="Check_interaction" to="." method="_on_Check_interaction_body_exited"]

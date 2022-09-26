@@ -97,7 +97,7 @@ animation = "walk_2"
 current = true
 zoom = Vector2( 0.6, 0.6 )
 limit_left = -10000081
-limit_top = -10000081
+limit_top = 0
 
 [node name="RayCast" type="RayCast2D" parent="."]
 enabled = true

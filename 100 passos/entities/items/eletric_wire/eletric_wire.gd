@@ -11,6 +11,8 @@ func _process(delta):
 	else:
 		$Collision.disabled = true
 		$Light.visible = false
+	if Global.have_radio and Global.have_battery:
+		$SoundCheck/EletricFX.volume_db = -80
 
 func _on_ElectricWire_body_entered(body):
 	if body.name == "Player":

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/items/items_hub.png" type="Texture" id=1]
 [ext_resource path="res://entities/items/radio/radio.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/items/Pegando_o_item.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/fonts/Retro Gaming.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,6 +18,10 @@ animations = [ {
 "name": "radio",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = ExtResource( 4 )
 
 [node name="Radio" type="Area2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -34,6 +39,23 @@ animation = "radio"
 [node name="ColletedFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 volume_db = 24.0
+
+[node name="TextBox" type="CanvasLayer" parent="."]
+visible = false
+scale = Vector2( 0.3, 0.3 )
+transform = Transform2D( 0.3, 0, 0, 0.3, 0, 0 )
+
+[node name="Void" type="Label" parent="TextBox"]
+margin_left = 446.667
+margin_top = 463.333
+margin_right = 1076.67
+margin_bottom = 566.333
+custom_fonts/font = SubResource( 4 )
+text = "Hmm, parece que esta radio no tiene pilas."
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
 
 [connection signal="body_entered" from="." to="." method="_on_Radio_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Radio_body_exited"]

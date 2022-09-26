@@ -61,7 +61,6 @@ visible = false
 position = Vector2( 4, 0 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
 
@@ -71,7 +70,7 @@ scale = Vector2( 1.02667, 1 )
 [node name="TextController" parent="." index="4"]
 position = Vector2( 2, -38 )
 dialog_limit = [ 1, 3, 5 ]
-text_list = [ "Oye,  ¿cómo estás, amigo, podrías por favor, traerme un cigarro?", "", "Ups, que bueno que tienes las cosas, muchas gracias.", "", "AFTER_CONCLUDING", "" ]
+text_list = [ "Oye,  ¿cómo estás, amigo, podrías por favor, traerme un cigarro?", "", "Ups, que bueno que tienes las cosas, muchas gracias.", "", "esta bloqueado? intenta encontrar la llave.", "" ]
 
 [node name="additional" parent="TextController" index="0"]
 script = ExtResource( 1 )

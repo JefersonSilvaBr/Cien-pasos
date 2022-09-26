@@ -43,7 +43,7 @@ shape = SubResource( 5 )
 frames = SubResource( 4 )
 animation = "close"
 
-[node name="OpenFX" type="AudioStreamPlayer2D" parent="."]
+[node name="OpenFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
 [connection signal="area_entered" from="." to="." method="_on_Cabinet_area_entered"]

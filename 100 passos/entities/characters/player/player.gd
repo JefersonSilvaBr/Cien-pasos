@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+export(bool) var final
+
 var velocity = Vector2.ZERO
 var limit_steps = 100
 
@@ -24,16 +26,26 @@ func _physics_process(delta):
 			_loop()
 		TRANSIT:
 			_transit()
-	
+	Global.step_counter = limit_steps
 
 
 func _idle():
 	$Animated.play("idle")
 	_moves()
 	_move_slide()
+	if final == false:
+		if Input.is_action_just_pressed("r"):
+			Global.current_state = LOOP
+		elif Input.is_action_just_pressed("ui_cancel"):
+			get_tree().change_scene("res://world/user_interface/menu.tscn")
 	current_state = _idle_check()
 
 func _walk():
+	if final == false:
+		if Input.is_action_just_pressed("r"):
+			Global.current_state = LOOP
+		elif Input.is_action_just_pressed("ui_cancel"):
+			get_tree().change_scene("res://world/user_interface/menu.tscn")
 	if current_walk == 0:
 		$Animated.play("walk")
 	else:
@@ -75,7 +87,7 @@ func _idle_check():
 func _walk_check():
 	_verify_current_walk()
 	if Global.have_radio and Global.have_battery:
-		return TRANSIT
+		current_state = TRANSIT
 	elif limit_steps < 0:
 		current_state = LOOP
 		return
@@ -100,13 +112,22 @@ func _position_checker():
 		$RayCast.cast_to.x = 3.5
 
 func _moves():
-	_position_checker()
-	if current_state != WALK:
-		velocity.x = 0
-	elif $Animated.flip_h == true:
-		velocity.x = -22
-	elif $Animated.flip_h == false:
-		velocity.x = 22
+	if not final:
+		_position_checker()
+		if current_state != WALK:
+			velocity.x = 0
+		elif $Animated.flip_h == true:
+			velocity.x = -22
+		elif $Animated.flip_h == false:
+			velocity.x = 22
+	else:
+		_position_checker()
+		if current_state != WALK:
+			velocity.x = 0
+		elif $Animated.flip_h == true:
+			velocity.x = -17
+		elif $Animated.flip_h == false:
+			velocity.x = 17
 
 func _move_slide():
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -120,6 +141,7 @@ func _verify_current_walk():
 
 func _on_Animated_animation_finished():
 	if $Animated.animation == "walk" or $Animated.animation == "walk_2":
-		limit_steps -= 1
+		if not final:
+			limit_steps -= 1
 		print(limit_steps)
 		_walk_check()

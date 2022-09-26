@@ -82,14 +82,12 @@ valign = 2
 autowrap = true
 clip_text = true
 
-[node name="InteractionFX" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( -3.8147e-06, -3.8147e-06 )
+[node name="InteractionFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -5.0
 pitch_scale = 0.9
 
-[node name="ItemsInteractionFX" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( -3.8147e-06, -3.8147e-06 )
+[node name="ItemsInteractionFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = 24.0
 

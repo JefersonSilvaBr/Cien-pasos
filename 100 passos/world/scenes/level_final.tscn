@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://world/scenes/level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/background_final.png" type="Texture" id=2]
@@ -20,19 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 43.7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Butterfly:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -32, -56 ) ]
+"values": [ -331.4 ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -45,10 +33,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 84, 84.1, 95 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 95 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 43.7, 43.7, 131.0, 131.0 ]
+"values": [ 43.7, 43.7 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Butterfly:position")
@@ -57,10 +45,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 84, 84.1, 95 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 95 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -96, -48 ), Vector2( 1344, -64 ), Vector2( 1344, -64 ), Vector2( 1344, 144 ) ]
+"values": [ Vector2( -96, -48 ), Vector2( 1344, -64 ) ]
 }
 
 [sub_resource type="AtlasTexture" id=2]
@@ -71,9 +59,17 @@ region = Rect2( 0, 0, 16, 16 )
 atlas = ExtResource( 5 )
 region = Rect2( 16, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
 "name": "fly",
 "speed": 5.0
@@ -92,16 +88,10 @@ visible = false
 visible = false
 
 [node name="Animated" parent="Characters/Child" index="2"]
-frame = 1
-
-[node name="Animated" parent="Characters/Mother" index="2"]
-frame = 1
-
-[node name="Animated" parent="Characters/Smoker" index="2"]
 frame = 2
 
-[node name="Animated" parent="Characters/BathroomGuy" index="2"]
-frame = 0
+[node name="Animated" parent="Characters/Smoker" index="2"]
+frame = 4
 
 [node name="Flashlight" parent="Items" index="0"]
 visible = false
@@ -110,7 +100,7 @@ visible = false
 visible = false
 
 [node name="Animated" parent="Items/ElectricWire" index="1"]
-frame = 0
+frame = 10
 
 [node name="Animated" parent="Items/DoorGuard" index="1"]
 animation = "open"
@@ -128,12 +118,17 @@ visible = false
 
 [node name="Player" parent="PC" index="0"]
 position = Vector2( -12, -32 )
+final = true
 
 [node name="Collider" parent="PC/Player" index="0"]
 disabled = true
 
 [node name="RayCast" parent="PC/Player" index="3"]
 enabled = false
+
+[node name="PlayerReflex" parent="PC/Player" index="5"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="PlayerReflex" parent="PC" index="1" instance=ExtResource( 4 )]
 position = Vector2( 3116, -32 )
@@ -161,10 +156,11 @@ anims/RESET = SubResource( 5 )
 anims/butterfly = SubResource( 1 )
 
 [node name="Butterfly" type="Node2D" parent="." index="8"]
-position = Vector2( -32, -56 )
-rotation = 0.762709
+position = Vector2( -41.4316, -48.6063 )
+rotation = -5.78402
 
 [node name="Animated" type="AnimatedSprite" parent="Butterfly" index="0"]
+rotation = -0.921534
 frames = SubResource( 4 )
 animation = "fly"
 playing = true
@@ -179,6 +175,12 @@ script = null
 
 [node name="SoundFX" type="Node2D" parent="." index="9"]
 script = ExtResource( 7 )
+
+[node name="StepCount" parent="." index="10"]
+visible = false
+
+[node name="StepCount2" parent="." index="11"]
+visible = false
 
 [editable path="Characters/Child"]
 [editable path="Characters/Mother"]

@@ -45,7 +45,7 @@ visible = false
 position = Vector2( 4, 0 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="TextController" parent="." index="4"]

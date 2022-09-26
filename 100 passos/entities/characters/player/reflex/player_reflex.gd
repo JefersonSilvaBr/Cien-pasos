@@ -84,3 +84,8 @@ func _verify_current_walk():
 func _on_Animated_animation_finished():
 	if $Animated.animation == "walk" or $Animated.animation == "walk_2":
 		_walk_check()
+
+
+func _on_CheckEnd_area_entered(area):
+	if area.name == "CheckEnd":
+		FinalFransit.animation_ref.play("credits")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/characters/player/reflex/player_reflex.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/player/Player-Sheet.png" type="Texture" id=2]
@@ -59,6 +59,9 @@ animations = [ {
 "speed": 6.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 9.5, 13.5 )
+
 [node name="PlayerReflex" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -71,4 +74,12 @@ disabled = true
 frames = SubResource( 2 )
 animation = "walk_2"
 
+[node name="CheckEnd" type="Area2D" parent="."]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckEnd"]
+position = Vector2( 0.5, 3.5 )
+shape = SubResource( 12 )
+
 [connection signal="animation_finished" from="Animated" to="." method="_on_Animated_animation_finished"]
+[connection signal="area_entered" from="CheckEnd" to="." method="_on_CheckEnd_area_entered"]

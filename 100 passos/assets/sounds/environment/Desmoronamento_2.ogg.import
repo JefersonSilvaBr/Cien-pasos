@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Desmoronamento_2.ogg-a09156344d9d9c21d1e3d8a416ce5008.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/environment/Desmoronamento_2.ogg"
+dest_files=[ "res://.import/Desmoronamento_2.ogg-a09156344d9d9c21d1e3d8a416ce5008.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

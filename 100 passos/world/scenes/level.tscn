@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://entities/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/resources/base_tile_small.tres" type="TileSet" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://entities/characters/journalist/journalist.tscn" type="PackedScene" id=22]
 [ext_resource path="res://entities/characters/skateboarder/skateboarder.tscn" type="PackedScene" id=23]
 [ext_resource path="res://entities/characters/seller/seller.tscn" type="PackedScene" id=24]
+[ext_resource path="res://world/resources/step_ count.tscn" type="PackedScene" id=25]
+[ext_resource path="res://world/scenes/level.gd" type="Script" id=26]
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 10.3499, 12.5 )
@@ -78,6 +80,7 @@ glow_high_quality = true
 
 [node name="Level" type="Node2D"]
 position = Vector2( 32, 80 )
+script = ExtResource( 26 )
 
 [node name="BackgroundElements" type="Node2D" parent="."]
 __meta__ = {
@@ -136,7 +139,7 @@ z_as_relative = false
 disabled = true
 
 [node name="Animated" parent="Characters/Child" index="2"]
-frame = 5
+frame = 3
 
 [node name="Collider" parent="Characters/Child/CheckInteraction" index="0"]
 position = Vector2( 9.34874, 2.88625 )
@@ -161,7 +164,7 @@ z_index = 1
 z_as_relative = false
 
 [node name="Animated" parent="Characters/Mother" index="2"]
-frame = 1
+frame = 3
 
 [node name="Collider" parent="Characters/Mother/CheckInteraction" index="0"]
 position = Vector2( -3, 4 )
@@ -214,9 +217,6 @@ position = Vector2( 101, -16 )
 
 [node name="Collider" parent="Characters/BathroomGuy" index="0"]
 position = Vector2( 1.25, 3.5 )
-
-[node name="Animated" parent="Characters/BathroomGuy" index="2"]
-frame = 0
 
 [node name="Collider" parent="Characters/BathroomGuy/CheckInteraction" index="0"]
 position = Vector2( 10.7142, 3 )
@@ -373,7 +373,7 @@ position = Vector2( 307, -50 )
 
 [node name="station_2" parent="Effects" instance=ExtResource( 11 )]
 visible = true
-position = Vector2( 478, -54 )
+position = Vector2( 473, -53 )
 
 [node name="bathtoom" parent="Effects" instance=ExtResource( 11 )]
 visible = true
@@ -400,6 +400,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="StepCount" parent="." instance=ExtResource( 25 )]
+modulate = Color( 0.45098, 0.486275, 0.415686, 1 )
+position = Vector2( 352, -69 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="StepCount2" parent="." instance=ExtResource( 25 )]
+modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+position = Vector2( 147, -44 )
+rotation = 0.0676007
+scale = Vector2( 0.145198, 0.0913912 )
+
 [editable path="Characters/Child"]
 [editable path="Characters/Mother"]
 [editable path="Characters/Smoker"]
@@ -412,3 +423,4 @@ __meta__ = {
 [editable path="Items/Door_inventory"]
 [editable path="Items/Key"]
 [editable path="Items/Radio"]
+[editable path="PC/Player"]

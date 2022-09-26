@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://world/resources/transition_level.gd" type="Script" id=1]
 [ext_resource path="res://assets/sounds/player/Som_do_Loop-A.ogg" type="AudioStream" id=2]
 [ext_resource path="res://assets/sounds/environment/Soundscape_plataforma_trem.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/fonts/Retro Gaming.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -17,6 +22,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Text:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -33,6 +50,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Text:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -61,6 +90,19 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0 )
 
+[node name="Text" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 103.0
+margin_top = 35.0
+margin_right = -109.0
+margin_bottom = -55.0
+custom_fonts/font = SubResource( 4 )
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
 [node name="Animation" type="AnimationPlayer" parent="."]
 autoplay = "faid_out"
 anims/RESET = SubResource( 1 )
@@ -69,11 +111,11 @@ anims/faid_out = SubResource( 3 )
 
 [node name="SoundFX" type="Node2D" parent="."]
 
-[node name="SoundScapeFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+[node name="SoundScapeFX" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 3 )
 volume_db = 5.0
 
-[node name="LoopFX" type="AudioStreamPlayer2D" parent="SoundFX"]
+[node name="LoopFX" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 2 )
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_Animation_animation_finished"]
