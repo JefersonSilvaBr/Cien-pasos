@@ -170,13 +170,7 @@ position = Vector2( -94.5, 7 )
 
 [node name="Animated" parent="Select/Characters/Skateboarder" index="2"]
 animation = "idle"
-frame = 2
-
-[node name="InteractionFX" parent="Select/Characters/Skateboarder" index="5"]
-position = Vector2( -3.8147e-06, -3.8147e-06 )
-
-[node name="ItemsInteractionFX" parent="Select/Characters/Skateboarder" index="6"]
-position = Vector2( -3.8147e-06, -3.8147e-06 )
+frame = 3
 
 [node name="Mother" parent="Select/Characters" instance=ExtResource( 8 )]
 position = Vector2( -218, 5.5 )
@@ -184,12 +178,6 @@ position = Vector2( -218, 5.5 )
 [node name="Animated" parent="Select/Characters/Mother" index="2"]
 position = Vector2( 3, 6 )
 animation = "idle"
-
-[node name="InteractionFX" parent="Select/Characters/Mother" index="5"]
-position = Vector2( -3.8147e-06, -3.8147e-06 )
-
-[node name="ItemsInteractionFX" parent="Select/Characters/Mother" index="6"]
-position = Vector2( -3.8147e-06, -3.8147e-06 )
 
 [node name="Child" parent="Select/Characters" instance=ExtResource( 9 )]
 position = Vector2( -229.5, 16.5 )

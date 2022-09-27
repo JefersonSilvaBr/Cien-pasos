@@ -16,8 +16,8 @@ func _process(delta):
 		$Collider.disabled = true
 		$Check_interaction/Collider.disabled = true
 		$Animated.play("open")
-	else:
-		$SoundFX/LockedFX.play()
+	elif Input.is_action_just_pressed("ui_accept") and it_is and closed:
+		$SoundFX/OpenFX.play()
 
 func _on_Check_interaction_body_entered(body):
 	it_is = true
